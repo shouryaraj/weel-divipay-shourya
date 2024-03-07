@@ -231,6 +231,37 @@ describe("Search funtionality", () => {
     within(merchantCell).getByText("John Mendoza");
   });
 
+  it("should filter transactions based on search text for GST", () => {
+    const getGstCell = (row) => within(row).getAllByRole("cell")[6];
+    const getGstInRow = (screen, rowNumber) =>
+      getGstCell(getRows(screen)[rowNumber]);
+
+    renderApp();
+
+    const searchInput = screen.getByPlaceholderText("Search");
+    fireEvent.change(searchInput, { target: { value: "646" } });
+
+    const gstCell = getGstInRow(screen, 1);
+
+    within(gstCell).getByText("$646.27");
+  });
+
+  it("should filter transactions based on search text for budget", () => {
+    const getBudgetCell = (row) => within(row).getAllByRole("cell")[7];
+
+    renderApp();
+
+    const searchInput = screen.getByPlaceholderText("Search");
+    fireEvent.change(searchInput, { target: { value: "sales" } });
+
+    getRows(screen).forEach((row, index) => {
+      if (index == 0) return;
+      const merchantCell = getBudgetCell(row);
+
+      within(merchantCell).getByText("Sales Team");
+    });
+  });
+
   it("should filter transactions based on search text for Merchant Name", () => {
     const getMerchantCell = (row) => within(row).getAllByRole("cell")[2];
 
@@ -238,11 +269,28 @@ describe("Search funtionality", () => {
 
     const searchInput = screen.getByPlaceholderText("Search");
     fireEvent.change(searchInput, { target: { value: "facebook" } });
+
     getRows(screen).forEach((row, index) => {
       if (index == 0) return;
       const merchantCell = getMerchantCell(row);
 
       within(merchantCell).getByText("Facebook");
+    });
+  });
+
+  it("should filter transactions based on search text for Category", () => {
+    const getCategoryCell = (row) => within(row).getAllByRole("cell")[4];
+
+    renderApp();
+
+    const searchInput = screen.getByPlaceholderText("Search");
+    fireEvent.change(searchInput, { target: { value: "super" } });
+
+    getRows(screen).forEach((row, index) => {
+      if (index == 0) return;
+      const merchantCell = getCategoryCell(row);
+
+      within(merchantCell).getByText("Supermarket");
     });
   });
 
