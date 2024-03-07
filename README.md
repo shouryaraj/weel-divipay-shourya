@@ -1,6 +1,6 @@
-## Implementation
+## Implementation Documentation
 
-[Implementation link](https://github.com/shouryaraj/weel-divipay-shourya/blob/main/implementation.md)
+[Implementation](https://github.com/shouryaraj/weel-divipay-shourya/blob/main/implementation.md)
 ## Installation
 
 1. Clone this repo to your machine
