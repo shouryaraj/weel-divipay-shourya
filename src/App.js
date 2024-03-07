@@ -1,31 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+
+import NavigationBar from "./components/nav";
+import TransactionTable from "./components/transaction-table";
 
 const PageContainer = styled.div`
-    max-width: 1200px;
-    padding: 24px;
-    margin: 0 auto;
+  max-width: 1200px;
+  padding: 24px;
+  margin: 0 auto;
 `;
 
-const Title = styled.h1`
-    font-family: sans-serif;
-    font-size: 32px;
-    font-weight: 600;
-    text-align: center;
-`;
-
-const App = ({ categories, merchants, transactions }) => (
+const App = ({ categories, merchants, transactions }) => {
+  return (
     <PageContainer>
-        <Title>Transactions</Title>
-
-        <table>
-            <tbody>
-                <tr>
-                    <td>Complete</td>
-                </tr>
-            </tbody>
-        </table>
+      <NavigationBar />
+      <TransactionTable
+        categories={categories}
+        merchants={merchants}
+        initialTransactions={transactions}
+      />
     </PageContainer>
-)
+  );
+};
 
 export default App;
